@@ -146,6 +146,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GGLoginScreenHook.h" />
+    <ClInclude Include="GGMainHook.h" />
+    <ClInclude Include="global.h" />
+    <ClInclude Include="hook_utils.h" />
+    <ClInclude Include="utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="GGLoginScreenHook.cpp" />
+    <ClCompile Include="GGMainHook.cpp" />
+    <ClCompile Include="hook_utils.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
