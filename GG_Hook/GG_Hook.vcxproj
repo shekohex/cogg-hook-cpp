@@ -148,16 +148,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GGBaseHook.h" />
     <ClInclude Include="GGLoginScreenHook.h" />
     <ClInclude Include="GGMainHook.h" />
+    <ClInclude Include="GGWinSocketHook.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="hook_utils.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="GGBaseHook.cpp" />
     <ClCompile Include="GGLoginScreenHook.cpp" />
     <ClCompile Include="GGMainHook.cpp" />
+    <ClCompile Include="GGWinSocketHook.cpp" />
     <ClCompile Include="hook_utils.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>

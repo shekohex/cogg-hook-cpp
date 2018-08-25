@@ -1,12 +1,14 @@
 #pragma once
-#include "GGLoginScreenHook.h"
-class GGMainHook
-{
+#include "GGBaseHook.h"
+typedef std::array<GGBaseHook*, 12> GGHooks;
+
+class GGMainHook {
 public:
 	GGMainHook();
-	void SetupLoginScreenHook();
+	void SetupHooks(GGHooks hooks);
+	void UnloadHooks();
 	~GGMainHook();
 private:
-	GGLoginScreenHook ggLoginScreenHook;
+	GGHooks ggHooks;
 };
 

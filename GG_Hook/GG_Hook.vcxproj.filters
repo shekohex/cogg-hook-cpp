@@ -33,6 +33,12 @@
     <ClInclude Include="GGMainHook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GGWinSocketHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GGBaseHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hook_utils.cpp">
@@ -48,6 +54,12 @@
       <Filter>Source Files\HookClasses</Filter>
     </ClCompile>
     <ClCompile Include="GGMainHook.cpp">
+      <Filter>Source Files\HookClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="GGWinSocketHook.cpp">
+      <Filter>Source Files\HookClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="GGBaseHook.cpp">
       <Filter>Source Files\HookClasses</Filter>
     </ClCompile>
   </ItemGroup>
