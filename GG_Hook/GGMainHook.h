@@ -1,7 +1,7 @@
 #pragma once
 #include "GGBaseHook.h"
 #include <array>
-typedef std::array<COGG::GGBaseHook*, 1> GGHooks;
+typedef std::array<std::unique_ptr<COGG::GGBaseHook>, 1> GGHooks;
 namespace COGG {
 	// the size of hooks can be edited here;
 	class GGMainHook {

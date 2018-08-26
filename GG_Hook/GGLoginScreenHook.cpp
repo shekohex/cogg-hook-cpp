@@ -16,14 +16,14 @@ namespace COGG {
 		usernameAddy = FindPattern(CONQUER_MODULE, USERNAME_HOOK_PATTERN, USERNAME_HOOK_MASK);
 		LOG(FATAL) << COND(usernameAddy != 0x527F67) << COLOR(red) << "username Address wasn't correct\n"; // must be this !
 		jumpLength = 0x16;
-		LOG(INFO) << fmt::format("Username Address in EAX {0:#x}\n", usernameAddy);
+		LOG(DEBUG) << fmt::format("Username Address in EAX {0:#x}\n", usernameAddy);
 
 	}
 
 	void GGLoginScreenHook::SetupHook() {
 		assert(jumpLength > 5);
 		LogUsernameJmpBack = usernameAddy + jumpLength;
-		LOG(INFO) << fmt::format("JumpBack Address {0:#x}\n", LogUsernameJmpBack);
+		LOG(DEBUG) << fmt::format("JumpBack Address {0:#x}\n", LogUsernameJmpBack);
 		PlaceJMP((BYTE*) usernameAddy, (DWORD) HookUsername, jumpLength);
 	}
 
@@ -47,7 +47,7 @@ namespace COGG {
 
 	void LogUsername(char *username) {
 		MessageBoxA(NULL, username, "Username", MB_OK);
-		LOG(INFO) << fmt::format("Username {}\n", username);
+		LOG(DEBUG) << fmt::format("Username {}\n", username);
 	}
 
 	__declspec(naked) void HookUsername() {

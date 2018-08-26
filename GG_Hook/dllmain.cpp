@@ -10,16 +10,25 @@ static BOOL debug = TRUE;
 void GGInit(COGG::GGMainHook *ggMainHook) {
 	// Registering Hooks
 	GGHooks hooks = {
-		new COGG::GGLoginScreenHook(),
+		std::make_unique<COGG::GGLoginScreenHook>(),
 		// Add More Here
 	};
 	// Start it
-	ggMainHook->SetupHooks(hooks);
+	ggMainHook->SetupHooks(std::move(hooks));
 }
 
 void DestroyHooks(COGG::GGMainHook *ggMainHook) {
 	ggMainHook->UnloadHooks();
 	delete ggMainHook;
+}
+void SetupLogging(char *logFilename) {
+	char *format = "[%Y-%m-%d %H:%M:%S.#ms] [#severity] [#tag_func] #message";
+	/// Stdout, Stderr Loging
+	const auto sinkCout = std::make_shared<AixLog::SinkCout>(AixLog::Severity::debug, AixLog::Type::normal, format);
+	const auto sinkCerr = std::make_shared<AixLog::SinkCerr>(AixLog::Severity::error, AixLog::Type::all, format);
+	/// Log everything into file
+	const auto sinkFile = std::make_shared<AixLog::SinkFile>(AixLog::Severity::trace, AixLog::Type::all, logFilename, format);
+	AixLog::Log::init({ sinkCout, sinkCerr, sinkFile });
 }
 
 int LockLibraryIntoProcessMemory(HMODULE DllHandle) {
@@ -42,10 +51,6 @@ BOOL WINAPI DllMain(
 	LPVOID lpReserved)     // reserved
 {
 	auto ggMainHook = new COGG::GGMainHook();
-	const auto sinkCout = std::make_shared<AixLog::SinkCout>(AixLog::Severity::trace, AixLog::Type::all, "[%Y-%m-%d %H:%M:%S.#ms] [#severity] #message");
-	const auto sinkFile = std::make_shared<AixLog::SinkFile>(AixLog::Severity::trace, AixLog::Type::all, "gglogfile.log");
-	AixLog::Log::init({ sinkCout, sinkFile });
-	// FLAGS_log_dir = "ggdebug";
 	// Perform actions based on the reason for calling.
 	switch (fdwReason) {
 	case DLL_PROCESS_ATTACH:
@@ -56,7 +61,9 @@ BOOL WINAPI DllMain(
 			BindCrtHandlesToStdHandles(true, true, true); // make it work for stdin, stdout, stderr
 			SetConsoleTitle(TEXT("Debug Console"));
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED); // enable colors
-			LOG(INFO) << "Attached Successfuly!\n";
+			// ...
+			SetupLogging("gglogs.log");
+			LOG(DEBUG) << "Attached Successfuly!\n";
 		}
 		if (LockLibraryIntoProcessMemory(hModule) != NO_ERROR) {
 			MsgBoxError("Error while Locking Library into Process !");
@@ -65,8 +72,7 @@ BOOL WINAPI DllMain(
 		} else {
 			// Return FALSE to fail DLL load.
 			// CreateThread( NULL, NULL, (LPTHREAD_START_ROUTINE)KeepMeAlive, NULL, NULL, NULL );
-			// google::InstallFailureSignalHandler();
-			LOG(INFO) << "Starting Hooks\n";
+			LOG(DEBUG) << "Starting Hooks\n";
 			GGInit(ggMainHook);
 		}
 		break;
