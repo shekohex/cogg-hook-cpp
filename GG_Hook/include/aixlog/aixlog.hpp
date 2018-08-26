@@ -670,7 +670,7 @@ protected:
 		pos = result.find("#function");
 		if (pos != std::string::npos)
 			result.replace(pos, 9, metadata.function?metadata.function.name:"");
-
+		
 		pos = result.find("#message");
 		if (pos != std::string::npos)
 		{
@@ -772,7 +772,7 @@ struct SinkOutputDebugString : public Sink
 
 	void log(const Metadata& metadata, const std::string& message) override
 	{
-		OutputDebugString(message.c_str());
+		OutputDebugStringA(message.c_str());
 	}
 };
 #endif
@@ -940,7 +940,7 @@ struct SinkEventLog : public Sink
 {
 	SinkEventLog(const std::string& ident, Severity severity, Type type = Type::all) : Sink(severity, type)
 	{
-		event_log = RegisterEventSource(NULL, ident.c_str());
+		event_log = RegisterEventSourceA(NULL, ident.c_str());
 	}
 
 	WORD get_type(Severity severity) const
@@ -968,7 +968,7 @@ struct SinkEventLog : public Sink
 	{
 		// We need this temp variable because we cannot take address of rValue
 		const char* c_str = message.c_str(); 
-		ReportEvent(event_log, get_type(metadata.severity), 0, 0, NULL, 1, 0, &c_str, NULL);
+		ReportEventA(event_log, get_type(metadata.severity), 0, 0, NULL, 1, 0, &c_str, NULL);
 	}
 
 protected:
