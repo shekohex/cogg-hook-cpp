@@ -1,3 +1,4 @@
+#define FMT_HEADER_ONLY 1
 #include <windows.h>
 #include <fmt/format.h>
 #include <aixlog/aixlog.hpp>
@@ -33,7 +34,7 @@ void SetupLogging(char *logFilename) {
 
 int LockLibraryIntoProcessMemory(HMODULE DllHandle) {
 
-	TCHAR moduleName[1024]; // will hold the dll name with it's full path
+	TCHAR moduleName[2048]; // will hold the dll name with it's full path
 	HMODULE LocalDllHandle2; // we will compare agenst it to check if we got everything ok.
 
 	if (0 == GetModuleFileName(DllHandle, moduleName, sizeof(moduleName) / sizeof(TCHAR))) return GetLastError();
@@ -54,6 +55,7 @@ BOOL WINAPI DllMain(
 	// Perform actions based on the reason for calling.
 	switch (fdwReason) {
 	case DLL_PROCESS_ATTACH:
+		MsgBoxInfo("Injected !");
 		// DisableThreadLibraryCalls(hModule);
 		// Initialize once for each new process.
 		if (debug) {

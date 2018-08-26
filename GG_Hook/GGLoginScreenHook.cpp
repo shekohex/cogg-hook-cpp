@@ -14,7 +14,7 @@ namespace COGG {
 
 	void GGLoginScreenHook::OnHookInit() {
 		usernameAddy = FindPattern(CONQUER_MODULE, USERNAME_HOOK_PATTERN, USERNAME_HOOK_MASK);
-		LOG(FATAL) << COND(usernameAddy != 0x527F67) << COLOR(red) << "username Address wasn't correct\n"; // must be this !
+		LOG(FATAL) << COND(usernameAddy != 0x527F67) << "username Address wasn't correct\n"; // must be this !
 		jumpLength = 0x16;
 		LOG(DEBUG) << fmt::format("Username Address in EAX {0:#x}\n", usernameAddy);
 
