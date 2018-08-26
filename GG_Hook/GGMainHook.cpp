@@ -9,8 +9,8 @@ GGMainHook::GGMainHook() { }
  * and start to setting up every hook
 */
 void GGMainHook::SetupHooks(GGHooks hooks) {
-	ggHooks = std::move(hooks);
-	for (auto hook : hooks) {
+	ggHooks = hooks;
+	for (auto hook : ggHooks) {
 		hook->OnHookInit();
 		hook->SetupHook();
 		printf_s("Added Hook %s \n", hook->GetHookName().c_str());

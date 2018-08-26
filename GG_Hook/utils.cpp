@@ -107,5 +107,11 @@ void clear_screen(char fill) {
 }
 
 void MsgBoxInfo(LPCSTR text) {
-	MessageBoxA(NULL, text, "Info", MB_OK);
+	MessageBoxA(NULL, text, "Info", MB_ICONINFORMATION);
+}
+void MsgBoxWarn(LPCSTR text) {
+	MessageBoxA(NULL, text, "Warnning", MB_ICONEXCLAMATION);
+}
+void MsgBoxError(LPCSTR text) {
+	MessageBoxA(NULL, text, "Error", MB_ICONERROR);
 }
