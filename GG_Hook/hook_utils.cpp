@@ -1,4 +1,4 @@
-#include "global.h"
+#include "hook_utils.h"
 
 #pragma region Mid Function Hook/Code cave
 /*Credits to InSaNe on MPGH for the original function*/

@@ -1,11 +1,13 @@
 #include "GGBaseHook.h"
 
 
+namespace COGG {
+	GGBaseHook::GGBaseHook() { }
 
-GGBaseHook::GGBaseHook() { }
+	::std::string GGBaseHook::GetHookName() {
+		return ::std::string();
+	}
 
-std::string GGBaseHook::GetHookName() {
-	return std::string();
+	GGBaseHook::~GGBaseHook() { }
 }
 
-GGBaseHook::~GGBaseHook() { }

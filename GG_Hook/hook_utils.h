@@ -1,6 +1,9 @@
 #pragma once
-#include "global.h"
-
+#define GLOG_NO_ABBREVIATED_SEVERITIES
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <tlhelp32.h>
+#include <psapi.h>
 #pragma region Mid Function Hook/Code cave
 /*Credits to InSaNe on MPGH for the original function*/
 //We make Length at the end optional as most jumps will be 5 or less bytes
