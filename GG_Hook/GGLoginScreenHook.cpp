@@ -4,10 +4,14 @@
 #include "GGLoginScreenHook.h"
 #include "hook_utils.h"
 namespace COGG {
-
+	char* USERNAME_HOOK_PATTERN = "\x50\xE8\x00\x00\x00\x00\x83\xC4\x28\xC6\x45\xFC\x06\x8D\x4D\xC8";
+	char* USERNAME_HOOK_MASK = "xx????xxxxxxxxxx";
+	DWORD USER_INFO_FUCNC = 0x007CCF2B;
+	bool  USERNAME_HOOKED;
 	DWORD LogUsernameJmpBack = 0;
 	DWORD UsernamePtr = 0x0;
 	char * CONQUER_MODULE = "Conquer.exe";
+
 	GGLoginScreenHook::GGLoginScreenHook() {
 		USERNAME_HOOKED = false;
 	}
@@ -19,6 +23,7 @@ namespace COGG {
 		LOG(DEBUG) << fmt::format("Username Address in EAX {0:#x}\n", usernameAddy);
 
 	}
+
 
 	void GGLoginScreenHook::SetupHook() {
 		assert(jumpLength > 5);
@@ -46,12 +51,12 @@ namespace COGG {
 	GGLoginScreenHook::~GGLoginScreenHook() { }
 
 	void LogUsername(char *username) {
-		MessageBoxA(NULL, username, "Username", MB_OK);
+		USERNAME_HOOKED = true;
 		LOG(DEBUG) << fmt::format("Username {}\n", username);
 	}
 
 	__declspec(naked) void HookUsername() {
-		__asm PUSH EAX
+		__asm PUSH EAX /// Username
 		__asm MOV[UsernamePtr], EAX
 		// TODO: Call function to Send it to server :)
 		LogUsername((char *)*(&UsernamePtr));

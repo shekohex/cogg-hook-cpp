@@ -88,16 +88,17 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GG_HOOK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Administrator\Documents\Visual Studio 2015\Projects\COGG\GG_Hook\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Administrator\Documents\Visual Studio 2015\Projects\COGG\GG_Hook\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>minhook/libMinHook-x86-v140-mtd.lib;shell32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
     </Link>
   </ItemDefinitionGroup>
@@ -126,6 +127,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GG_HOOK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Administrator\Documents\Visual Studio 2015\Projects\COGG\GG_Hook\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -133,7 +135,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Administrator\Documents\Visual Studio 2015\Projects\COGG\GG_Hook\lib\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>fmt/fmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>minhook/libMinHook-x86-v140-mt.lib;shell32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -158,6 +160,7 @@
     <ClInclude Include="GGBaseHook.h" />
     <ClInclude Include="GGLoginScreenHook.h" />
     <ClInclude Include="GGMainHook.h" />
+    <ClInclude Include="GGShellApiHook.h" />
     <ClInclude Include="GGWinSocketHook.h" />
     <ClInclude Include="hook_utils.h" />
     <ClInclude Include="utils.h" />
@@ -167,6 +170,7 @@
     <ClCompile Include="GGBaseHook.cpp" />
     <ClCompile Include="GGLoginScreenHook.cpp" />
     <ClCompile Include="GGMainHook.cpp" />
+    <ClCompile Include="GGShellApiHook.cpp" />
     <ClCompile Include="GGWinSocketHook.cpp" />
     <ClCompile Include="hook_utils.cpp" />
     <ClCompile Include="utils.cpp" />
