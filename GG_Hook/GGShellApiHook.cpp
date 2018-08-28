@@ -44,6 +44,7 @@ namespace COGG {
 	}
 
 	HINSTANCE GGShellApiHook::DetouredShellExecuteA(HWND hWnd, LPCSTR lpOperation, LPCSTR lpFile, LPCSTR lpParameters, LPCSTR lpDirectory, int nShowCmd) {
+		LOG(INFO) << fmt::format("Opening {}\n", lpFile); 
 		// we can change that here, but you know, i will return ok
 		return 0;
 		// if (strcmp("http://co.99.com/signout/", lpFile) == 0) {

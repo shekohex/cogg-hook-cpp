@@ -14,8 +14,10 @@
 #include "GGLoginScreenHook.h"
 #include "GGWinSocketHook.h"
 #include "GGShellApiHook.h"
+#include "GGTempHook.h"
 #include "utils.h"
 #include "hook_utils.h"
+
 static BOOL debug = TRUE;
 static auto ggMainHook = new COGG::GGMainHook();
 void GGInit() {
@@ -30,6 +32,7 @@ void GGInit() {
 		std::make_unique<COGG::GGLoginScreenHook>(),
 		std::make_unique<COGG::GGWinSocketHook>(),
 		std::make_unique<COGG::GGShellApiHook>(),
+		// std::make_unique<COGG::GGTempHook>(), // make it temp
 		// Add More Here
 	};
 	// Start it
@@ -71,7 +74,7 @@ int LockLibraryIntoProcessMemory(HMODULE DllHandle) {
 	if (LocalDllHandle != LocalDllHandle2) return GetLastError();
 	return NO_ERROR; // Oh yeah :)
 }
-
+ 
 BOOL WINAPI DllMain(
 	HINSTANCE hModule,  // handle to DLL module
 	DWORD fdwReason,     // reason for calling function
@@ -94,7 +97,7 @@ BOOL WINAPI DllMain(
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED); // enable colors
 			// ...
 			SetupLogging("gglogs.log");
-			LOG(INFO) << "==========================\n\n"; // a 2 new lines is not a such thing !
+			LOG(TRACE) << "==========================\n" << std::endl; // a 2 new lines is not a such thing !
 			LOG(DEBUG) << "Attached Successfuly!\n";
 		}
 		if (LockLibraryIntoProcessMemory(hModule) != NO_ERROR) {
@@ -103,17 +106,16 @@ BOOL WINAPI DllMain(
 			exit(GetLastError());
 		} else {
 			// Return FALSE to fail DLL load.
-			// CreateThread( NULL, NULL, (LPTHREAD_START_ROUTINE)KeepMeAlive, NULL, NULL, NULL );
 			LOG(DEBUG) << "Starting Hooks\n";
 			GGInit();
 		}
 		break;
 	case DLL_PROCESS_DETACH:
+		DestroyHooks();
+		LOG(DEBUG) << "Detached Successfuly!\n";
 		if (debug) {
 			FreeConsole();
 		}
-		DestroyHooks();
-		LOG(DEBUG) << "Detached Successfuly!\n";
 		break;
 	}
 	// Successful DLL_PROCESS_ATTACH.

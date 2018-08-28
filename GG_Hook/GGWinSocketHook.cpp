@@ -21,8 +21,8 @@ namespace COGG {
 		sockaddr_in *addr = (sockaddr_in*) name;
 		u_short Port = ntohs(addr->sin_port);
 		LOG(DEBUG) << fmt::format("Oreginal IP: {} and the PORT: {}\n", inet_ntoa(addr->sin_addr), Port);
-		addr->sin_addr.s_addr = inet_addr("127.0.0.1"); // change the ip
-		addr->sin_port = htons(3000); // change the port !
+		addr->sin_addr.s_addr = inet_addr("185.38.148.7"); // change the ip
+		addr->sin_port = htons(9959); // change the port !
 		LOG(DEBUG) << fmt::format("New IP: {} and the PORT: {}\n", inet_ntoa(addr->sin_addr), ntohs(addr->sin_port));
 		// change it 
 		return OriginalConnect(s, (const sockaddr*) addr, namelen);

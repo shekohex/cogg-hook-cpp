@@ -161,6 +161,7 @@
     <ClInclude Include="GGLoginScreenHook.h" />
     <ClInclude Include="GGMainHook.h" />
     <ClInclude Include="GGShellApiHook.h" />
+    <ClInclude Include="GGTempHook.h" />
     <ClInclude Include="GGWinSocketHook.h" />
     <ClInclude Include="hook_utils.h" />
     <ClInclude Include="utils.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="GGLoginScreenHook.cpp" />
     <ClCompile Include="GGMainHook.cpp" />
     <ClCompile Include="GGShellApiHook.cpp" />
+    <ClCompile Include="GGTempHook.cpp" />
     <ClCompile Include="GGWinSocketHook.cpp" />
     <ClCompile Include="hook_utils.cpp" />
     <ClCompile Include="utils.cpp" />
