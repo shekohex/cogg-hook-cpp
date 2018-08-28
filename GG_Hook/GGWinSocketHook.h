@@ -1,11 +1,15 @@
 #pragma once
-#include "GGBaseHook.h"
 namespace COGG {
 	class GGWinSocketHook: public GGBaseHook {
 	public:
 		GGWinSocketHook();
 		~GGWinSocketHook();
+		// Inherited via GGBaseHook
+		virtual void SetupHook() override;
+		virtual void OnHookInit() override;
+		virtual void OnHookDestroy() override;
+		virtual ::std::string GetHookName() override;
+	private:
+		static int WINAPI DetouredConnect(SOCKET s, const sockaddr *name, int len);
 	};
 }
-
-
