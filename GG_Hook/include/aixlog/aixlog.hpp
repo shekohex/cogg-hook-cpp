@@ -738,7 +738,7 @@ struct SinkFile : public SinkFormat
 	SinkFile(Severity severity, Type type, const std::string& filename, const std::string& format = "%Y-%m-%d %H-%M-%S.#ms [#severity] (#tag_func)") :
 		SinkFormat(severity, type, format)
 	{
-		ofs.open(filename.c_str(), std::ofstream::out | std::ofstream::trunc);
+		ofs.open(filename.c_str(), std::ofstream::out | std::ofstream::app); // append
 	}
 
 	~SinkFile() override
@@ -772,6 +772,7 @@ struct SinkOutputDebugString : public Sink
 
 	void log(const Metadata& metadata, const std::string& message) override
 	{
+		UNREFERENCED_PARAMETER(metadata); // do we need it ?
 		OutputDebugStringA(message.c_str());
 	}
 };
