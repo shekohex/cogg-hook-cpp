@@ -1,18 +1,18 @@
 #pragma once
 namespace COGG {
-	void HookUsername();
-	class GGLoginScreenHook: public GGBaseHook {
+	void HookDatFile();
+	class GGDatFileHook: public GGBaseHook {
 	public:
-		GGLoginScreenHook();
-		char * GetUsername();
-		~GGLoginScreenHook();
-		::std::string GetHookName();
+		GGDatFileHook();
+		~GGDatFileHook();
+
 		// Inherited via GGBaseHook
 		virtual void SetupHook() override;
 		virtual void OnHookInit() override;
 		virtual void OnHookDestroy() override;
+		virtual ::std::string GetHookName() override;
 	private:
-		DWORD usernameAddy;
+		DWORD datFileAddy;
 		DWORD jumpLength;
 	};
 }

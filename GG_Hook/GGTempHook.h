@@ -11,7 +11,7 @@ namespace COGG {
 		virtual void OnHookDestroy() override;
 		virtual ::std::string GetHookName() override;
 	private:
-		static char *Detouredtmpnam(char *str);
+		static FILE *Detouredtmpnam(const char *str, const char *mode);
 	};
 }
 

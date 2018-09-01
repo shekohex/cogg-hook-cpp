@@ -71,6 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <EmbedManifest>true</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -158,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GGBaseHook.h" />
+    <ClInclude Include="GGDatFileHook.h" />
     <ClInclude Include="GGLoginScreenHook.h" />
     <ClInclude Include="GGMainHook.h" />
     <ClInclude Include="GGShellApiHook.h" />
@@ -169,6 +171,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GGBaseHook.cpp" />
+    <ClCompile Include="GGDatFileHook.cpp" />
     <ClCompile Include="GGLoginScreenHook.cpp" />
     <ClCompile Include="GGMainHook.cpp" />
     <ClCompile Include="GGShellApiHook.cpp" />

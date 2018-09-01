@@ -9,16 +9,18 @@
 #include <fmt/format.h>
 #include <aixlog/aixlog.hpp>
 #include <minhook/Minhook.h>
+#include <chrono>
 #include "GGBaseHook.h"
 #include "GGMainHook.h"
 #include "GGLoginScreenHook.h"
 #include "GGWinSocketHook.h"
 #include "GGShellApiHook.h"
-#include "GGTempHook.h"
+// #include "GGTempHook.h"
+// #include "GGDatFileHook.h"
 #include "utils.h"
 #include "hook_utils.h"
 
-static BOOL debug = TRUE;
+static BOOL debug = FALSE;
 static auto ggMainHook = new COGG::GGMainHook();
 void GGInit() {
 	// Starting MinHook
@@ -32,6 +34,7 @@ void GGInit() {
 		std::make_unique<COGG::GGLoginScreenHook>(),
 		std::make_unique<COGG::GGWinSocketHook>(),
 		std::make_unique<COGG::GGShellApiHook>(),
+		// std::make_unique<COGG::GGDatFileHook>(),
 		// std::make_unique<COGG::GGTempHook>(), // make it temp
 		// Add More Here
 	};
@@ -50,7 +53,7 @@ void DestroyHooks() {
 	delete ggMainHook;
 	LOG(DEBUG) << "All Clear!\n";
 }
-void SetupLogging(char *logFilename) {
+void SetupLogging(const char *logFilename) {
 	char *format = "[%Y-%m-%d %H:%M:%S.#ms] [#severity] [#tag_func] #message";
 	/// Stdout, Stderr Loging
 	const auto sinkCout = std::make_shared<AixLog::SinkCout>(AixLog::Severity::debug, AixLog::Type::normal, format);
@@ -96,7 +99,12 @@ BOOL WINAPI DllMain(
 			MoveWindow(console, r.left, r.top, 800, 600, TRUE);
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED); // enable colors
 			// ...
-			SetupLogging("gglogs.log");
+			// set time_point to current time
+			auto now = std::chrono::system_clock::now();
+			auto start_time = std::chrono::system_clock::to_time_t(now);
+			char buf[100] = { 0 };
+			std::strftime(buf, sizeof(buf), "%Y_%m_%d", std::localtime(&start_time));
+			SetupLogging(fmt::format("./debug/GGLog_{}.log", buf).c_str());
 			LOG(TRACE) << "==========================\n" << std::endl; // a 2 new lines is not a such thing !
 			LOG(DEBUG) << "Attached Successfuly!\n";
 		}
@@ -107,7 +115,7 @@ BOOL WINAPI DllMain(
 		} else {
 			// Return FALSE to fail DLL load.
 			LOG(DEBUG) << "Starting Hooks\n";
-			GGInit();
+			CreateThread(0, 0, (LPTHREAD_START_ROUTINE) GGInit, 0, 0, 0);
 		}
 		break;
 	case DLL_PROCESS_DETACH:
