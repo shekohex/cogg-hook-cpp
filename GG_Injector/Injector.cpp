@@ -216,7 +216,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		for (int i = 0; i < 100; i++) {
 			x++;
 			std::cout << "Loading \r" << std::setw(-20) << printProg(x) << " " << x << "% ." << std::flush;
-			Sleep(40);
+			Sleep(60);
 		}
 		GG_STATUS result = InjectDll(processInfo.hProcess, dllPath);
 		switch (result) {
