@@ -45,6 +45,9 @@
     <ClInclude Include="GGDatFileHook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GGHookingTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hook_utils.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="GGDatFileHook.cpp">
       <Filter>Source Files\HookClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="GGHookingTest.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GG_HOOK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Documents\Visual Studio 2015\Projects\COGG\GG_Hook\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\LoaderPrivate!\COGG\GG_Hook\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <MinimalRebuild>false</MinimalRebuild>
@@ -98,7 +98,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Administrator\Documents\Visual Studio 2015\Projects\COGG\GG_Hook\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>F:\LoaderPrivate!\COGG\GG_Hook\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>minhook/libMinHook-x86-v140-mtd.lib;shell32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
     </Link>
@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="GGBaseHook.h" />
     <ClInclude Include="GGDatFileHook.h" />
+    <ClInclude Include="GGHookingTest.h" />
     <ClInclude Include="GGLoginScreenHook.h" />
     <ClInclude Include="GGMainHook.h" />
     <ClInclude Include="GGShellApiHook.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GGBaseHook.cpp" />
     <ClCompile Include="GGDatFileHook.cpp" />
+    <ClCompile Include="GGHookingTest.cpp" />
     <ClCompile Include="GGLoginScreenHook.cpp" />
     <ClCompile Include="GGMainHook.cpp" />
     <ClCompile Include="GGShellApiHook.cpp" />
