@@ -16,6 +16,9 @@
     <Filter Include="Source Files\HookClasses">
       <UniqueIdentifier>{a4de9d27-bbf7-4510-9980-68b6d184b9ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Addtion">
+      <UniqueIdentifier>{4b86fca4-b7d6-4b1b-8e8e-66ec250eb70f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hook_utils.h">
@@ -46,6 +49,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GGHookingTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GGCLegacyCipher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -81,7 +87,10 @@
       <Filter>Source Files\HookClasses</Filter>
     </ClCompile>
     <ClCompile Include="GGHookingTest.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\HookClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="GGCLegacyCipher.cpp">
+      <Filter>Source Files\Addtion</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

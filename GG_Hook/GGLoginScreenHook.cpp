@@ -5,6 +5,12 @@
 #include "GGLoginScreenHook.h"
 #include "hook_utils.h"
 
+
+/*
+*this class didn't work at this time...
+*
+*/
+
 namespace COGG {
 	char* USERNAME_HOOK_PATTERN = "\x50\xE8\x00\x00\x00\x00\x83\xC4\x28\xC6\x45\xFC\x06\x8D\x4D\xC8";
 	char* USERNAME_HOOK_MASK = "xx????xxxxxxxxxx";

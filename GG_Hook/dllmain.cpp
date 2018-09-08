@@ -12,7 +12,7 @@
 #include <chrono>
 #include "GGBaseHook.h"
 #include "GGMainHook.h"
-// #include "GGLoginScreenHook.h"
+#include "GGLoginScreenHook.h"
 #include "GGWinSocketHook.h"
 #include "GGShellApiHook.h"
 // #include "GGTempHook.h"
@@ -20,7 +20,7 @@
 #include "utils.h"
 #include "hook_utils.h"
 
-static BOOL debug = FALSE;
+static BOOL debug = TRUE;
 static auto ggMainHook = new COGG::GGMainHook();
 void GGInit() {
 	// Starting MinHook
@@ -31,7 +31,7 @@ void GGInit() {
 	}
 	// Registering Hooks
 	GGHooks hooks = {
-		// std::make_unique<COGG::GGLoginScreenHook>(),
+	    //std::make_unique<COGG::GGLoginScreenHook>(),
 		std::make_unique<COGG::GGWinSocketHook>(),
 		std::make_unique<COGG::GGShellApiHook>(),
 		// std::make_unique<COGG::GGDatFileHook>(),

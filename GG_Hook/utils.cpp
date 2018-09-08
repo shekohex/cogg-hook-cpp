@@ -115,3 +115,30 @@ void MsgBoxWarn(LPCSTR text) {
 void MsgBoxError(LPCSTR text) {
 	MessageBoxA(NULL, text, "Error", MB_ICONERROR);
 }
+
+void HexDump(char* Header, unsigned char* Packet, unsigned short Length, unsigned short Type) {
+	printf("[%s]\n", Header);
+	for (int i = 0; i < Length; i += 16)
+	{
+		for (int j = 0; j < 16; j++)
+		{
+			if (i + j < Length)
+				printf("%02X ", Packet[i + j]);
+			else
+				printf("   ");
+		}
+		printf(" ; ");
+		for (int j = 0; j < 16; j++)
+		{
+			if (i + j < Length)
+			{
+				if (isprint(Packet[i + j]))
+					printf("%c", Packet[i + j]);
+				else
+					printf(".");
+			}
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
