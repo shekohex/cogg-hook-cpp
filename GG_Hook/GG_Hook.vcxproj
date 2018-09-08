@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="GGBaseHook.h" />
     <ClInclude Include="GGDatFileHook.h" />
+    <ClInclude Include="GGHookingTest.h" />
     <ClInclude Include="GGLoginScreenHook.h" />
     <ClInclude Include="GGMainHook.h" />
     <ClInclude Include="GGShellApiHook.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GGBaseHook.cpp" />
     <ClCompile Include="GGDatFileHook.cpp" />
+    <ClCompile Include="GGHookingTest.cpp" />
     <ClCompile Include="GGLoginScreenHook.cpp" />
     <ClCompile Include="GGMainHook.cpp" />
     <ClCompile Include="GGShellApiHook.cpp" />
