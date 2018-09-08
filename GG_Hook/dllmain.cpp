@@ -12,7 +12,7 @@
 #include <chrono>
 #include "GGBaseHook.h"
 #include "GGMainHook.h"
-#include "GGLoginScreenHook.h"
+// #include "GGLoginScreenHook.h"
 #include "GGWinSocketHook.h"
 #include "GGShellApiHook.h"
 // #include "GGTempHook.h"
@@ -31,7 +31,7 @@ void GGInit() {
 	}
 	// Registering Hooks
 	GGHooks hooks = {
-		std::make_unique<COGG::GGLoginScreenHook>(),
+		// std::make_unique<COGG::GGLoginScreenHook>(),
 		std::make_unique<COGG::GGWinSocketHook>(),
 		std::make_unique<COGG::GGShellApiHook>(),
 		// std::make_unique<COGG::GGDatFileHook>(),
@@ -99,6 +99,13 @@ BOOL WINAPI DllMain(
 			MoveWindow(console, r.left, r.top, 800, 600, TRUE);
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED); // enable colors
 			// ...
+		}
+		if (LockLibraryIntoProcessMemory(hModule) != NO_ERROR) {
+			MsgBoxError("Error while Locking Library into Process !");
+			LOG(FATAL) << fmt::format("Error while Locking Library into Process ! {}\n", GetLastError());
+			exit(GetLastError());
+		} else {
+			// Return FALSE to fail DLL load.
 			// set time_point to current time
 			auto now = std::chrono::system_clock::now();
 			auto start_time = std::chrono::system_clock::to_time_t(now);
@@ -107,15 +114,8 @@ BOOL WINAPI DllMain(
 			SetupLogging(fmt::format("./debug/GGLog_{}.log", buf).c_str());
 			LOG(TRACE) << "==========================\n" << std::endl; // a 2 new lines is not a such thing !
 			LOG(DEBUG) << "Attached Successfuly!\n";
-		}
-		if (LockLibraryIntoProcessMemory(hModule) != NO_ERROR) {
-			MsgBoxError("Error while Locking Library into Process !");
-			LOG(FATAL) << fmt::format("Error while Locking Library into Process ! {}\n", GetLastError());
-			exit(GetLastError());
-		} else {
-			// Return FALSE to fail DLL load.
 			LOG(DEBUG) << "Starting Hooks\n";
-			CreateThread(0, 0, (LPTHREAD_START_ROUTINE) GGInit, 0, 0, 0);
+			CreateThread(0, 0, (LPTHREAD_START_ROUTINE) GGInit, 0, 0, 0); // run hook on another thread. do we need that !?
 		}
 		break;
 	case DLL_PROCESS_DETACH:
