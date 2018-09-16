@@ -54,6 +54,12 @@
     <ClInclude Include="GGCLegacyCipher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GGUserState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GGSprintfHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hook_utils.cpp">
@@ -91,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="GGCLegacyCipher.cpp">
       <Filter>Source Files\Addtion</Filter>
+    </ClCompile>
+    <ClCompile Include="GGUserState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GGSprintfHook.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

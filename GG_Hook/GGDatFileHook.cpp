@@ -42,6 +42,7 @@ namespace COGG {
 	void LogDatFile() {
 		DAT_FILE_HOOKED = true;
 		DAT_FILE_ADDY = DAT_FILE_EBP - 0x2C;
+		// hook this to see the file name !? as you like i am didn't end the reading xD
 		LOG(DEBUG) << fmt::format("1 Dat File {}\n", (char *)*(&DAT_FILE_ADDY));
 		for (DWORD i = 0; i < 11; i++)
 			*((char *) (DAT_FILE_ADDY) + i) = testFile[i];

@@ -15,6 +15,7 @@
 #include "GGLoginScreenHook.h"
 #include "GGWinSocketHook.h"
 #include "GGShellApiHook.h"
+#include "GGSprintfHook.h"
 // #include "GGTempHook.h"
 // #include "GGDatFileHook.h"
 #include "utils.h"
@@ -29,9 +30,12 @@ void GGInit() {
 	} else {
 		LOG(DEBUG) << "MinHook Initialized successfully\n";
 	}
+	// State.
+
 	// Registering Hooks
 	GGHooks hooks = {
 	    //std::make_unique<COGG::GGLoginScreenHook>(),
+		std::make_unique<COGG::GGSprintfHook>(),
 		std::make_unique<COGG::GGWinSocketHook>(),
 		std::make_unique<COGG::GGShellApiHook>(),
 		// std::make_unique<COGG::GGDatFileHook>(),

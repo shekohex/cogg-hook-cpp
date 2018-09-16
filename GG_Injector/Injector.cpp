@@ -212,12 +212,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		BindCrtHandlesToStdHandles(false, true, true); // make it work for stdin, stdout, stderr
 		// Make Conquer Start and then inject
 		std::cout << "Please Wait..." << std::endl;
-		int x = 0;
+	/*	int x = 0;
 		for (int i = 0; i < 100; i++) {
 			x++;
 			std::cout << "Loading \r" << std::setw(-20) << printProg(x) << " " << x << "% ." << std::flush;
 			Sleep(60);
-		}
+		}*/
 		GG_STATUS result = InjectDll(processInfo.hProcess, dllPath);
 		switch (result) {
 		case INJECTED_OK:
